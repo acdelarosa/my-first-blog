@@ -7,8 +7,10 @@
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <style>
+
         .page-header {
             margin-bottom: 20px;
+            background-color: #ab00c2;
         }
         .page-header h1 {
             margin: 0;
@@ -22,21 +24,74 @@
             margin-left: auto; /* Asegura que los botones se alineen a la derecha */
         }
         .btn-tomato {
-            background-color: #ff6347;
+            background-color: #ff69b4;;
             color: white;
-            border-color: #ff6347;
+            background-color: #ff69b4;;
             font-family: 'Lobster', cursive;
             font-size: 20px;
         }
         .btn-tomato:hover,
         .btn-tomato:focus,
         .btn-tomato:active {
-            background-color: #e5533d; /* Tomate oscuro */
+            background-color: #ff69b4; 
             border-color: #e5533d;
         }
         .form-control {
             font-family: 'Lobster', cursive; /* Aplicamos Lobster al input también */
             font-size: 20px; /* cambio tamaño de botones */
+        }
+        {% comment %} Esta parte va limitando la cantidad de líneas de cada post en la página principal {% endcomment %}
+        .post-text {
+            display: -webkit-box; /* Establece un contenedor de tipo flexbox */
+            -webkit-line-clamp: 3; /* Limita el número de líneas visibles a 3 */
+            -webkit-box-orient: vertical; /* Orienta el contenedor de manera vertical */
+            overflow: hidden; /* Oculta el texto que se desborda */
+            text-overflow: ellipsis; /* Muestra "..." al final del texto truncado */
+            margin-bottom: 10px; /* Espacio inferior entre posts */
+        }
+        {% comment %} Desde aquí inicia css de paginación {% endcomment %}
+        /* Estilo general de la paginación */
+        .pagination {
+            margin: 20px 0;
+            text-align: center; /* Centra el contenido horizontalmente */
+        }
+
+        .pagination .step-links {
+            display: inline-flex; /* Usa flexbox para centrar los elementos */
+            justify-content: center; /* Centra los botones horizontalmente */
+        }
+
+        .pagination .step-links a,
+        .pagination .step-links span {
+           display: inline-block;
+           margin: 0 5px;
+           padding: 10px 20px; /* Ajustar el tamaño del botón */
+           border: 1px solid #ff69b4; /* Rosa */
+           border-radius: 4px; /* Bordes redondeados */
+           text-decoration: none;
+           color: #fff; /* Texto blanco */
+           background-color: #ff69b4; /* Rosa */
+           font-size: 16px; /* Tamaño de fuente */
+        }
+
+        .pagination .step-links a:hover,
+        .pagination .step-links a:focus {
+            background-color: #ff6347; /* Tomate */
+            border-color: #ff6347; /* Tomate */
+            color: #fff; /* Texto blanco */
+        }
+
+        .pagination .disabled {
+            color: #ddd;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        .pagination .current {
+            background-color: #ff69b4; /* Rosa */
+            color: #fff; /* Texto blanco */
+            border: 1px solid #ff69b4; /* Rosa */
         }
     </style>
 </head>

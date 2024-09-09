@@ -1,5 +1,5 @@
 h1 a, h2 a {
-    color: #fc3605;
+    color: #fc05e7;
     font-family: 'Lobster';
 }
 
@@ -12,7 +12,7 @@ body {
     padding-left: 45px;
 }
 .page-header {
-    background-color: #C25100;
+    background-color: #ab00c2;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -67,4 +67,42 @@ h1, h2, h3, h4 {
     width: 100%; /* Asegura que el campo de fecha use el ancho completo del contenedor */
     box-sizing: border-box; /* Incluye el padding y el border en el ancho total del campo */
     margin-bottom: 10px; /* Espacio debajo del campo de fecha */
+}
+/* Estilo general de la paginación */
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination .step-links a,
+.pagination .step-links span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 20px; /* Ajustar el tamaño del botón */
+    border: 1px solid #ff69b4; /* Rosa */
+    border-radius: 4px; /* Bordes redondeados */
+    text-decoration: none;
+    color: #fff; /* Texto blanco */
+    background-color: #ff69b4; /* Rosa */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.pagination .step-links a:hover,
+.pagination .step-links a:focus {
+    background-color: #85158f; /* Tomate */
+    border-color: #f047ff; /* Tomate */
+    color: #fff; /* Texto blanco */
+}
+
+.pagination .disabled {
+    color: #ddd;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.pagination .current {
+    background-color: #ff69b4; /* Rosa */
+    color: #fff; /* Texto blanco */
+    border: 1px solid #ff69b4; /* Rosa */
 }

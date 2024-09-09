@@ -6,11 +6,19 @@ from .forms import PostForm
 from django.shortcuts import redirect
 from django.db.models import Q
 from django.contrib import messages
+from django.core.paginator import Paginator
+
+
 #post_list renderizado
 
+
 def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    post_list = Post.objects.all()
+    paginator = Paginator(post_list, 5)  # Muestra 5 posts por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'blog/post_list.html', {'page_obj': page_obj})
+
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)

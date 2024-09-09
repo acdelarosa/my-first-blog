@@ -1,14 +1,38 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
+    {% for post in page_obj %}
         <div class="post">
             <div class="date">
                 {{ post.published_date }}
             </div>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p class="post-text">{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
-{% endblock %}
 
+    <!-- Código para la paginación -->
+    <div class="pagination">
+        <div class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn btn-pink">&laquo; Primera</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-pink">Anterior</a>
+            {% else %}
+                <span class="btn btn-pink disabled">&laquo; Primera</span>
+                <span class="btn btn-pink disabled">Anterior</span>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-pink">Siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-pink">Última &raquo;</a>
+            {% else %}
+                <span class="btn btn-pink disabled">Siguiente</span>
+                <span class="btn btn-pink disabled">Última &raquo;</span>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
