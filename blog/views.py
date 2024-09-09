@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.db.models import Q
-
+from django.contrib import messages
 #post_list renderizado
 
 def post_list(request):
@@ -75,5 +75,14 @@ def search(request):
         posts = Post.objects.none()  # Si no hay consulta, no muestra resultados
 
     return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
+
+#te deja eliminar un post
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        post.delete()
+        messages.success(request, "Post eliminado con éxito.")
+        return redirect('post_list')
+    return render(request, 'blog/post_confirm_delete.html', {'post': post})
 
 
