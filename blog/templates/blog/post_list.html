@@ -7,6 +7,11 @@
                 {{ post.published_date }}
             </div>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            {% if post.image %}
+                <div class="post-image">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-thumbnail">
+                </div>
+            {% endif %}
             <p class="post-text">{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}

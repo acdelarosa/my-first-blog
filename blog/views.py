@@ -58,7 +58,7 @@ def post_edit(request, pk=None):
         post = None
 
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)  # Añade request.FILES para manejar imágenes
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -70,6 +70,7 @@ def post_edit(request, pk=None):
         form = PostForm(instance=post)
 
     return render(request, 'blog/post_edit.html', {'form': form})
+
 #Vista de búsqueda
 
 def search(request):
