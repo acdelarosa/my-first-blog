@@ -1,0 +1,80 @@
+{% load static %}
+<html>
+<head>
+    <title>Django Andre</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <style>
+        .page-header {
+            margin-bottom: 20px;
+        }
+        .page-header h1 {
+            margin: 0;
+        }
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-row .btn-group {
+            margin-left: auto; /* Asegura que los botones se alineen a la derecha */
+        }
+        .btn-tomato {
+            background-color: #ff6347;
+            color: white;
+            border-color: #ff6347;
+            font-family: 'Lobster', cursive;
+            font-size: 20px;
+        }
+        .btn-tomato:hover,
+        .btn-tomato:focus,
+        .btn-tomato:active {
+            background-color: #e5533d; /* Tomate oscuro */
+            border-color: #e5533d;
+        }
+        .form-control {
+            font-family: 'Lobster', cursive; /* Aplicamos Lobster al input también */
+            font-size: 20px; /* cambio tamaño de botones */
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="header-row">
+                <!-- Columna para el título alineado a la izquierda -->
+                <div class="float-start"> 
+                    <h1><a href="/">Andre Blog</a></h1>
+                </div>
+
+                <!-- Columna para los botones alineados a la derecha -->
+                <div class="btn-group" role="group">
+                    <!-- Botón de agregar con color tomate -->
+                    <a href="{% url 'post_new' %}" class="btn btn-tomato">
+                        <span class="glyphicon glyphicon-plus"></span> Agregar
+                    </a>
+
+                    <!-- Formulario de búsqueda -->
+                    <form method="GET" action="{% url 'search' %}" class="form-inline" style="display: inline;">
+                        <div class="form-group">
+                            <input type="text" name="q" class="form-control" placeholder="Buscar...">
+                        </div>
+                        <button type="submit" class="btn btn-tomato">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
