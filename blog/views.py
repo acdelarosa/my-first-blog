@@ -50,7 +50,6 @@ def post_new(request, pk=None):
 
 
 #aquí te permite editar los post
-
 def post_edit(request, pk=None):
     if pk:
         post = get_object_or_404(Post, pk=pk)
@@ -58,7 +57,7 @@ def post_edit(request, pk=None):
         post = None
 
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES, instance=post)  # Añade request.FILES para manejar imágenes
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
